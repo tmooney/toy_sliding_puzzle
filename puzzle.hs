@@ -52,9 +52,9 @@ moveLeft :: Puzzle -> Puzzle
 moveLeft = map moveRowLeft
 
 moveRowLeft :: Row -> Row
-moveRowLeft [x, Blank, y] = [Blank, x, y]
-moveRowLeft [x, y, Blank] = [x, Blank, y]
-moveRowLeft r = r
+moveRowLeft [] = []
+moveRowLeft (x:Blank:xs) = Blank:x:xs
+moveRowLeft (x:xs) = x : moveRowLeft xs
 
 moveUp :: Puzzle -> Puzzle
 moveUp = transpose . moveLeft . transpose
