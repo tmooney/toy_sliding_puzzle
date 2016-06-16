@@ -1,10 +1,6 @@
 import Data.List (transpose)
 import System.Random
 
-data Square = Blank
-    | One | Two | Three | Four | Five | Six | Seven | Eight
-    deriving (Enum, Eq)
-
 data Direction = GoUp | GoDown | GoLeft | GoRight
     deriving (Bounded, Enum)
 
@@ -20,6 +16,10 @@ instance Random Direction where
     random = randomR (minBound, maxBound)
     randomR (l, u) g = (\ (x, g') -> ((toEnum x), g')) $ randomR (fromEnum l, fromEnum u) g
 
+data Square = Blank
+    | One | Two | Three | Four | Five | Six | Seven | Eight
+    deriving (Enum, Eq)
+
 showSquare :: Square -> String
 showSquare Blank = " "
 showSquare One = "1"
@@ -28,10 +28,10 @@ showSquare x = [succ . head . showSquare $ pred x]
 instance Show Square where
     show = showSquare
 
-showPuzzle = unlines . map show
-
 type Row = [Square]
 type Puzzle = [Row]
+
+showPuzzle = unlines . map show
 
 finished = [[One, Two, Three], [Four, Five, Six], [Seven, Eight, Blank]]
 
