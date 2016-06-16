@@ -38,9 +38,6 @@ finished = [[One, Two, Three], [Four, Five, Six], [Seven, Eight, Blank]]
 isFinished :: Puzzle -> Bool
 isFinished = (== finished)
 
-isLeftEdge :: Puzzle -> Bool
-isLeftEdge x = any (==Blank) (map head x)
-
 maybeMove :: Puzzle -> Maybe Direction -> Puzzle
 maybeMove x (Just y) = move x y
 maybeMove x _ = x
